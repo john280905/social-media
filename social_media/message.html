@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Messages - SocialDemo</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .messages-container {
+        max-width: 1000px;
+        margin: 20px auto;
+        display: flex;
+        gap: 20px;
+        height: calc(100vh - 120px);
+      }
+      .chat-list {
+        width: 350px;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+      .chat-header {
+        padding: 20px;
+        border-bottom: 1px solid #eee;
+        background: #f8f9fa;
+      }
+      .chat-list-item {
+        padding: 15px 20px;
+        border-bottom: 1px solid #f0f0f0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        transition: background 0.2s;
+      }
+      .chat-list-item:hover,
+      .chat-list-item.active {
+        background: #e3f2fd;
+      }
+      .chat-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #1da1f2;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+      .chat-preview {
+        flex: 1;
+      }
+      .chat-name {
+        font-weight: 600;
+        margin-bottom: 3px;
+      }
+      .chat-last-msg {
+        color: #666;
+        font-size: 14px;
+      }
+      .chat-time {
+        color: #999;
+        font-size: 12px;
+      }
+      .chat-window {
+        flex: 1;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+      }
+      .messages-header {
+        padding: 20px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .messages {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+      }
+      .message {
+        margin-bottom: 15px;
+        display: flex;
+      }
+      .message.sent {
+        justify-content: flex-end;
+      }
+      .message-bubble {
+        max-width: 70%;
+        padding: 12px 16px;
+        border-radius: 20px;
+      }
+      .message.sent .message-bubble {
+        background: #1da1f2;
+        color: white;
+        border-bottom-right-radius: 5px;
+      }
+      .message.received .message-bubble {
+        background: #f0f0f0;
+        color: #333;
+        border-bottom-left-radius: 5px;
+      }
+      .message-input {
+        padding: 20px;
+        border-top: 1px solid #eee;
+        display: flex;
+        gap: 10px;
+      }
+      .message-input input {
+        flex: 1;
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        padding: 12px 20px;
+        font-size: 16px;
+      }
+      .send-btn {
+        width: 50px;
+        height: 50px;
+        border: none;
+        background: #1da1f2;
+        color: white;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">SocialDemo</div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link"
+            ><i class="fas fa-home"></i> Home</a
+          >
+          <a href="profile.html" class="nav-link"
+            ><i class="fas fa-user"></i> Profile</a
+          >
+          <a href="notification.html" class="nav-link"
+            ><i class="fas fa-bell"></i> Notification</a
+          >
+          <a href="message.html" class="nav-link active"
+            ><i class="fas fa-envelope"></i> Message</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div class="messages-container">
+      <div class="chat-list">
+        <div class="chat-header">
+          <div style="font-weight: 600; margin-bottom: 5px">Messages</div>
+          <div style="color: #666; font-size: 14px">3 unread</div>
+        </div>
+        <div class="chat-list-item active">
+          <div class="chat-avatar">SW</div>
+          <div class="chat-preview">
+            <div class="chat-name">Sarah Wilson</div>
+            <div class="chat-last-msg">Hey! Love your demo! How did you...</div>
+          </div>
+          <div class="chat-time">2m</div>
+        </div>
+        <div class="chat-list-item">
+          <div class="chat-avatar">MJ</div>
+          <div class="chat-preview">
+            <div class="chat-name">Mike Johnson</div>
+            <div class="chat-last-msg">Great work on the social media app!</div>
+          </div>
+          <div class="chat-time">1h</div>
+        </div>
+        <div class="chat-list-item">
+          <div class="chat-avatar">EB</div>
+          <div class="chat-preview">
+            <div class="chat-name">Emily Brown</div>
+            <div class="chat-last-msg">Thanks for following back!</div>
+          </div>
+          <div class="chat-time">3h</div>
+        </div>
+      </div>
+      <div class="chat-window">
+        <div class="messages-header">
+          <div class="chat-avatar">SW</div>
+          <div style="flex: 1">
+            <div style="font-weight: 600">Sarah Wilson</div>
+            <div style="color: #666; font-size: 14px">Online</div>
+          </div>
+          <i class="fas fa-phone" style="font-size: 20px; cursor: pointer"></i>
+        </div>
+        <div class="messages">
+          <div class="message received">
+            <div class="message-bubble">
+              Hey John! Love your demo! How did you make it so responsive? 😍
+            </div>
+          </div>
+          <div class="message sent">
+            <div class="message-bubble">
+              Thanks Sarah! Just used CSS Grid and Flexbox with mobile-first
+              approach 🚀
+            </div>
+          </div>
+          <div class="message received">
+            <div class="message-bubble">
+              That's awesome! Planning to add backend?
+            </div>
+          </div>
+        </div>
+        <div class="message-input">
+          <input type="text" placeholder="Type a message..." />
+          <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
